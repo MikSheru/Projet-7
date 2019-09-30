@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+
+	<head>
+
+    <title>Projet 7 - OpenClassrooms</title>
+    
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=1">
+    
+    <meta charset="utf-8">
+    
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.10.2/css/all.css">
+    <link href="https://fonts.googleapis.com/css?family=Chilanka&display=swap" rel="stylesheet">
+  
+  </head>
+  
+	<body>
+
+    <!-------------------------- En tête du site ----------------------------->
+    <header>
+      
+      <div class="logo">
+        
+        <img src="img/logo.png" class="img-logo">
+        
+        <div class="titre">
+
+          <h1>Site d'Avis de Restaurants</h1>
+
+          <h2>Projet 7 - OpenClassrooms - Mikaël PARASOTE</h2>
+
+        </div>
+
+        <div id="recherche">
+
+          <div id="localisation-zone">
+
+            <input id="autocomplete-input" placeholder="Recherche" type="text" />                    
+          
+          </div>
+
+        </div>
+        <button id="actualiser-btn" class="btn btn-primary btn-lg">Actualiser</button>
+      
+      </div>		
+    
+    </header>
+
+    <!--------------- Carte + Liste des Restaurants à proximité ------------------>
+    <div class="map-et-liste">
+
+      <div class="map-container">
+
+        <div id="map">
+
+          <div id="loading" class="loading">
+
+            <p>La carte est en train de se charger. Cliquez sur AUTORISER pour accepter que la carte géolocalise votre position. Si vous refusez la géolocalisation, la carte ne s'affichera pas.</p>
+          
+          </div>
+        
+          <!-- Ici s'affichera la carte (après le message de chargement) -->
+
+        </div>
+      
+      </div>
+  
+      <div class="info-box">
+
+        <!-- Ici s'affiche un filtre (notes des restaurants) -->
+        <div id="filtre-options" class="filtre">
+
+          <label for="min-star">Note minimale :</label>
+          <input type="number" id="min-star" min="1" max="5"/>
+
+          <label for="max-star"> Note maximale :</label>
+          <input type="number" id="max-star" min="1" max="5"/>
+
+          <input type="button" id="filter-btn" value="Filtrer"/>
+
+        </div>          
+                
+        <div id="liste">
+
+          <div id="resultats">
+
+            <!-- Ici s'affichera la liste des restaurants -->  
+
+          </div>   
+
+        </div>
+
+      </div>
+
+      <!-- Info window -->
+        
+      <div id="info-content">
+          <div id="iw-icon"></div>
+          <h3 id="iw-rating"></h3>
+          <div class="extra-details">
+              <div id="iw-url"></div>
+              <div id="iw-address"></div>
+              <div id="iw-phone"></div>
+              <div id="iw-website"></div>
+              <div id="iw-open"></div>
+              <a href="#restaurant-info" id="iw-reviews"></a>
+          </div>
+      </div>
+          
+      <div id="info-content-small">
+          
+          <div id="iw-icon-small"></div>
+          <h3 id="iw-rating-small"></h3>
+          <div class="extra-details">
+              <div id="iw-url-small"></div>
+          </div>
+      </div>
+      <div id="info-content-new-restaurant">        
+          <form id="form-add-restaurant">
+          
+          </form>        
+      </div>
+
+    </div>
+
+    <!-- Rubrique réunissant les informations d'un restaurant sélectionné (dont les avis) -->
+    <div id="restaurant-info">
+
+      <div class="conteneur">
+
+        <div id="street-view">
+
+          <div id="street-view-wrapper">
+
+            <div id="pano"></div>
+
+          </div>
+
+          <div id="photo"></div>
+
+        </div>
+        
+        <div class="restaurant">
+
+          <div class="button-menu">
+
+            <button class="main-button" id="retourner-ou-map"><a href="#">Retour sur la carte</a></button>
+
+            <button class="main-button" id="see-photo">Photo(s) du restaurant</button>
+            <button class="main-button" id="see-street-view">Voir via Google Street View</button>
+            <button class="main-button" id="add-review-button"><a href="#add-review">Ajouter un commentaire</a></button>
+
+          </div>
+          
+          <h2 class="restaurant-name" id="name"></h2>
+
+          <p class="restaurant-details" id="address"></p>
+
+          <p class="restaurant-details" id="telephone"></p>
+          
+          <p class="restaurant-details" id="website"></p>
+          
+          <div class="review-header">
+
+            <h3 class="title">Avis</h3>
+
+          </div>
+            
+          <div id="reviews"></div>
+
+          <div id="show-message"></div>
+          
+          <!-- Section pour ajouter votre avis concernant un restaurant -->
+          <div id="form-wrapper">
+
+            <form id="add-review">
+
+              <label for="your-name">Nom :</label>
+              <input type="text" name="your-name" id="your-name" placeholder="Votre nom" required>
+
+              <label for="your-rating">Quelle note donneriez-vous à ce restaurant ?</label>
+              <select name="your-rating" id="your-rating" required>
+
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+
+              </select>
+
+              <label for="your-review">Qu'avez-vous retenu de votre passage dans ce restaurant ?</label>
+              <textarea name="your-review" id="your-review" placeholder="Votre avis" required></textarea>
+
+              <button type="submit" id="add-to-array" class="button">Envoyer</button>
+
+            </form>
+
+          </div>
+          
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>  
+    
+    <!-- JS -->
+    <script src="js/main.js"></script>
+    <script src="js/map.js"></script>
+    <script src="js/search.js"></script>
+    <script src="js/windows.js"></script>
+    <script src="js/stars.js"></script>
+    <script src="js/others.js"></script>
+    <script src="js/footer.js"></script>
+    <script src="js/ajax.js"></script>
+    <script src="js/comments.js"></script>
+
+    <!-- GOOGLE MAPS -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNuMvbx8RS-q49hLGROdcmHITSCGi2PLI&libraries=places&callback=initMap" async defer></script>
+
+
+  </body>
+  
+</html>
